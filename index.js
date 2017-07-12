@@ -7,6 +7,7 @@ var through = require('through');
 var ProgressPlugin = require('webpack/lib/ProgressPlugin');
 var clone = require('lodash.clone');
 var some = require('lodash.some');
+var hash = require('object-hash');
 
 var defaultStatsOptions = {
   colors: gutil.colors.supportsColor,
@@ -138,7 +139,9 @@ module.exports = function (options, wp, done) {
     }
 
     // Cache compiler for future use
-    var compiler = cache.compiler || webpack(config);
+    var cacheKey = hash(config);
+    var compiler = cache[cacheKey] || webpack(config);
+    cache[cacheKey] = compiler;
     cache.compiler = compiler;
 
     compiler.run(function (err, stats) {

@@ -29,6 +29,7 @@
     "lodash.clone": "^4.3.2",
     "lodash.some": "^4.2.2",
     "memory-fs": "^0.3.0",
+    "object-hash": "^1.1.8",
     "through": "^2.3.8",
     "vinyl": "^1.1.0",
     "webpack": "^2.2.0"
